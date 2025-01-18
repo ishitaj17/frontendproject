@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Webpage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      #left-menu {
+        transition: width 0.3s ease;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-blue-500 text-white p-4 z-10">
+      <div class="container mx-auto">
+        <h1 class="text-xl font-bold">Responsive Webpage</h1>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex flex-col pt-16 min-h-screen">
+      <div class="flex flex-1">
+        <!-- Left Menu -->
+        <div id="left-menu" class="bg-gray-200 w-64 p-4">
+          <button
+            id="toggle-menu"
+            class="mb-4 p-2 bg-blue-500 text-white rounded"
+          >
+            Toggle Menu
+          </button>
+          <ul>
+            <li class="mb-2">
+              <a href="#" class="text-gray-800">Menu Item 1</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-gray-800">Menu Item 2</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-gray-800">Menu Item 3</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 bg-white p-6">
+          <h2 class="text-2xl font-bold mb-4">Main Content</h2>
+          <p>This is the main content area. Add your content here.</p>
+        </main>
+
+        <!-- Right Panel -->
+        <aside class="w-64 bg-gray-200 p-4">
+          <h2 class="text-xl font-bold mb-4">Right Panel</h2>
+          <p>This is the right-side panel content.</p>
+        </aside>
+      </div>
+
+      <!-- Footer -->
+      <footer class="bg-gray-800 text-white p-4 text-center">
+        <p>&copy; 2025 Responsive Webpage. All Rights Reserved.</p>
+      </footer>
+    </div>
+
+    <script>
+      // Toggle Left Menu
+      document.getElementById("toggle-menu").addEventListener("click", () => {
+        const leftMenu = document.getElementById("left-menu");
+        leftMenu.style.width =
+          leftMenu.style.width === "64px" ? "256px" : "64px";
+      });
+
+      // Screen Width Resizing Function
+      function adjustPageWidth() {
+        const width = window.innerWidth;
+        const body = document.body;
+
+        if (width <= 600) {
+          body.style.transform = "scale(0.5)";
+          body.style.transformOrigin = "top left";
+        } else if (width > 600 && width <= 700) {
+          body.style.transform = "scale(0.75)";
+          body.style.transformOrigin = "top left";
+        } else if (width > 700 && width <= 767) {
+          body.style.transform = "scale(0.8)";
+          body.style.transformOrigin = "top left";
+        } else if (width >= 992 && width <= 1600) {
+          body.style.transform = "scale(0.9)";
+          body.style.transformOrigin = "top left";
+        } else {
+          body.style.transform = "scale(1)";
+          body.style.transformOrigin = "top left";
+        }
+      }
+
+      // Adjust on Load and Resize
+      window.addEventListener("load", adjustPageWidth);
+      window.addEventListener("resize", adjustPageWidth);
+    </script>
+  </body>
+</html>
